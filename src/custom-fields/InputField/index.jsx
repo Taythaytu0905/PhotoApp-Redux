@@ -20,7 +20,7 @@ InputField.defaultProps = {
 };
 
 export default function InputField(props) {
-  const { field, form, type, label, placeholder, disabled } = props;
+  const { field, type, label, placeholder, disabled } = props;
   const { name } = field;
   return (
     <FormGroup>
