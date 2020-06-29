@@ -1,4 +1,4 @@
-#Ứng dụng:
+# Ứng dụng:
 
 - Render danh sách photo yêu thích
 - Lọc photo theo category
@@ -9,7 +9,7 @@
 - Random photo ngẫu nhiên từ picsum
 - Hiển thị danh sách photo picsum đã lựa chọn
 
-#Công nghệ:
+# Công nghệ:
 
 - ReactJs
 - Redux

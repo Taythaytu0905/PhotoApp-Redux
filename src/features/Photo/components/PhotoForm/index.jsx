@@ -5,7 +5,7 @@ import SelectField from "custom-fields/SelectField";
 import { FastField, Form, Formik } from "formik";
 import PropTypes from "prop-types";
 import React from "react";
-import { Button, FormGroup } from "reactstrap";
+import { Button, FormGroup, Spinner } from "reactstrap";
 import * as Yup from "yup";
 
 PhotoForm.propTypes = {
@@ -17,11 +17,8 @@ PhotoForm.defaultProps = {
 };
 
 export default function PhotoForm(props) {
-  const initialValues = {
-    title: "",
-    categoryId: null,
-    photo: ""
-  };
+  const { initialValues, isAddMode } = props;
+
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("This is field require."),
     categoryId: Yup.number()
@@ -37,11 +34,11 @@ export default function PhotoForm(props) {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={value => console.log("Submit: ", value)}
+      onSubmit={props.onSubmit}
     >
       {formikProps => {
-        // const { values, errors, touched } = formikProps;
-
+        const { values, errors, touched, isSubmitting } = formikProps;
+        console.log({ values, errors, touched });
         return (
           <Form>
             <FastField
@@ -66,8 +63,9 @@ export default function PhotoForm(props) {
             />
 
             <FormGroup>
-              <Button type="submit" color="primary">
-                Add to album
+              <Button type="submit" color={isAddMode ? "primary" : "success"}>
+                {isSubmitting && <Spinner size="sm" />}
+                {isAddMode ? "Add to album" : "Update your photo"}
               </Button>
             </FormGroup>
           </Form>
